@@ -118,6 +118,7 @@ post '/create_payment_intent' do
       :amount => params[:amount],
       :currency => params[:currency] || 'usd',
       :description => params[:description] || 'Example PaymentIntent',
+      :transfer_data=> {destination: 'acct_1GNRtSAJxeFJl2wZ'},
     )
   rescue Stripe::StripeError => e
     status 402
@@ -138,7 +139,6 @@ post '/capture_payment_intent' do
         'pi_1GIOXuHUb191Znmc3BLP8kLv',
         {
         metadata: {order_id: '6735'},
-        transfer_data: {destination: 'acct_1GNRtSAJxeFJl2wZ'},
         application_fee_amount: 350
         },
       )
