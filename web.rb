@@ -134,6 +134,12 @@ end
 post '/capture_payment_intent' do
   begin
     id = params["payment_intent_id"]
+    temp = Stripe::PaymentIntent.update(
+        'pi_1GIOXuHUb191Znmc3BLP8kLv',
+        {metadata: {order_id: '6735'},
+        transfer_data['destination']: 'acct_1GNRtSAJxeFJl2wZ',
+        application_fee_amount: 350},
+      )
     payment_intent = Stripe::PaymentIntent.capture(id)
   rescue Stripe::StripeError => e
     status 402
