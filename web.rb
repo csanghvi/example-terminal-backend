@@ -142,7 +142,10 @@ post '/capture_payment_intent' do
         application_fee_amount: 350
         },
       )
-    payment_intent = Stripe::PaymentIntent.capture(id)
+      if (temp)
+        payment_intent = Stripe::PaymentIntent.capture(id)
+      else
+        return log_info("Error updating PI!")
   rescue Stripe::StripeError => e
     status 402
     return log_info("Error capturing PaymentIntent! #{e.message}")
