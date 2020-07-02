@@ -62,6 +62,7 @@ post '/register_reader' do
     reader = Stripe::Terminal::Reader.create(
       :registration_code => params[:registration_code],
       :label => params[:label]
+      location: 'tml_DuXQQgydGLIOvj'
     )
   rescue Stripe::StripeError => e
     status 402
